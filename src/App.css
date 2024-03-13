@@ -1,2 +1,66 @@
 main {
 }
+
+.maze-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;s
+}
+
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.maze-button {
+  background-color: #0091ff;
+  margin: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;;
+}
+
+.maze {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+}
+
+.cell.wall {
+  background-color: black;
+}
+
+.cell.visited {
+  background-color: lightblue
+}
+
+.cell.path {
+  background-color: white;
+}
+
+.cell.start {
+  background-color: green;
+}
+
+.cell.end {
+  background-color: red;
+}
