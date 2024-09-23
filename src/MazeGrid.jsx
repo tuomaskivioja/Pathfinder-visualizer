@@ -24,8 +24,8 @@ export default function MazeGrid({ width = 10, height = 10 }) {
               return cell === "end" ? "end" : "visited";
             }
             return cell;
-          }),
-        ),
+          })
+        )
       );
       if (maze[y][x] === "end") {
         console.log("path found!");
@@ -89,8 +89,8 @@ export default function MazeGrid({ width = 10, height = 10 }) {
               return cell === "end" ? "end" : "visited";
             }
             return cell;
-          }),
-        ),
+          })
+        )
       );
 
       if (maze[y][x] === "end") {
@@ -171,7 +171,7 @@ export default function MazeGrid({ width = 10, height = 10 }) {
     function carvePath(x, y) {
       matrix[y][x] = "path";
 
-      const directions = dirs.sort(() => Math.random() - 0.5);
+      const directions = [...dirs].sort(() => Math.random() - 0.5);
 
       for (let [dx, dy] of directions) {
         const nx = x + dx * 2;
