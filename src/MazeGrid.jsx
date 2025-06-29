@@ -17,16 +17,12 @@ export default function MazeGrid({ width = 10, height = 10 }) {
     function visitCell([x, y]) {
       console.log(x, y);
 
-      setMaze((prevMaze) =>
-        prevMaze.map((row, rowIndex) =>
-          row.map((cell, cellIndex) => {
-            if (rowIndex === y && cellIndex === x) {
-              return cell === "end" ? "end" : "visited";
-            }
-            return cell;
-          }),
-        ),
-      );
+      setMaze((prevMaze) => {
+        const newMaze = [...prevMaze];
+        newMaze[y] = [...newMaze[y]];
+        newMaze[y][x] = newMaze[y][x] === "end" ? "end" : "visited";
+        return newMaze;
+      });
       if (maze[y][x] === "end") {
         console.log("path found!");
         return true;
@@ -82,16 +78,12 @@ export default function MazeGrid({ width = 10, height = 10 }) {
     let visited = new Set(`${startNode[0]},${startNode[1]}`);
 
     function visitCell([x, y]) {
-      setMaze((prevMaze) =>
-        prevMaze.map((row, rowIndex) =>
-          row.map((cell, cellIndex) => {
-            if (rowIndex === y && cellIndex === x) {
-              return cell === "end" ? "end" : "visited";
-            }
-            return cell;
-          }),
-        ),
-      );
+      setMaze((prevMaze) => {
+        const newMaze = [...prevMaze];
+        newMaze[y] = [...newMaze[y]];
+        newMaze[y][x] = newMaze[y][x] === "end" ? "end" : "visited";
+        return newMaze;
+      });
 
       if (maze[y][x] === "end") {
         console.log("path found!");
@@ -148,7 +140,6 @@ export default function MazeGrid({ width = 10, height = 10 }) {
     for (let i = 0; i < height; i++) {
       let row = [];
       for (let j = 0; j < width; j++) {
-        let cell = Math.random();
         row.push("wall");
       }
       matrix.push(row);
@@ -211,9 +202,9 @@ export default function MazeGrid({ width = 10, height = 10 }) {
       </div>
       <div className={"maze"}>
         {maze.map((row, rowIndex) => (
-          <div className="row">
+          <div key={rowIndex} className="row">
             {row.map((cell, cellIndex) => (
-              <div className={`cell ${cell}`}></div>
+              <div key={`${rowIndex}-${cellIndex}`} className={`cell ${cell}`}></div>
             ))}
           </div>
         ))}
